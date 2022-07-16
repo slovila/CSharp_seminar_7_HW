@@ -20,7 +20,7 @@ int[,] GenerateArray(int rows, int columns, int min, int max)
     return answer;
 }
 
-void PrintArray(int[,] array)
+void PrintArray2D(int[,] array)
 {
     for (int i = 0; i < array.GetLength(0); i++)
     {
@@ -32,22 +32,35 @@ void PrintArray(int[,] array)
     }
     System.Console.WriteLine();
 }
-void ArithmeticMean(int[,] array)
+
+void PrintArray(double[] array)
 {
+    for (int i = 0; i < array.Length; i++)
+    {
+        System.Console.Write($"{array[i]}; ");
+    }
+}
+
+double[] ArithmeticMean(int[,] array)
+{
+    double[] result = new double[array.GetLength(1)];
+
     for (int j = 0; j < array.GetLength(0); j++)
     {
         double averageSum = 0;
         for (int i = 0; i < array.GetLength(1); i++)
         {
             averageSum = averageSum + array[i, j];
-            
         }
-        System.Console.Write($"{averageSum / array.GetLength(1)}     ");
+        result[j] = averageSum / array.GetLength(1);
     }
-
+ return result;
 }
 
+
 int[,] array = GenerateArray(5, 5, 0, 5);
-PrintArray(array);
+PrintArray2D(array);
 System.Console.WriteLine("Среднее арифметическое по столбцам : ");
-ArithmeticMean(array);
+PrintArray(ArithmeticMean(array));
+
+
